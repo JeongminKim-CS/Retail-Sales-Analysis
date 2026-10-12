@@ -1,0 +1,13 @@
+.DS_Store
+.Rhistory
+.RData
+.Ruserdata
+.Rproj.user/
+
+
+# Data files
+01_data/01_raw/*
+01_data/02_processed/*
+
+# Generated documentation
+04_report/project_plan.html
