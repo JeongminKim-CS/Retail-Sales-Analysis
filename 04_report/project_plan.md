@@ -424,7 +424,7 @@ The project will produce the following deliverables.
 | P2 — Data Cleaning | Complete |
 | P3 — Core KPI Analysis | Complete |
 | P4 — Business Analysis | In Progress |
-| P5 — MySQL Analysis | Not Started |
+| P5 — MySQL Analysis | In Progress |
 | P6 — Documentation | In Progress |
 | P7 — Quality Assurance | Not Started |
 
@@ -434,27 +434,57 @@ The project will produce the following deliverables.
 
 Current focus:
 
-**BQ1 — Monthly Performance**
+**BQ2 — Country Performance**
+
+### Completed Work Package
+
+**BQ1 — Monthly Performance — Complete**
 
 Completed:
 
 - Monthly Revenue calculation
+- Monthly Orders calculation
+- Monthly Active Customers calculation
+- Monthly Average Order Value calculation
 - Monthly Revenue visualization
 - Identification of November 2011 as the highest-revenue month
-- September-to-November Revenue change calculation
-
-Current finding:
-
-Revenue increased approximately **42.4% from September to November
-2011**.
-
-Remaining BQ1 analysis:
-
-- Orders change
-- Active Customers change
-- AOV change
+- September-to-November performance change analysis
 - Revenue-driver interpretation
 - BQ1 documentation
+
+Key findings:
+
+- Revenue increased approximately **42.4%** from September to November 2011.
+- Orders increased approximately **50.7%**.
+- Active customers increased approximately **31.4%**.
+- Average Order Value decreased approximately **5.5%**.
+- Revenue growth was primarily associated with higher order volume and
+  increased customer activity rather than higher spending per order.
+- December 2011 contains partial-month data and should not be directly
+  compared with complete months.
+
+### Current BQ2 Tasks
+
+- Calculate Revenue by country
+- Calculate Orders by country
+- Calculate Active Customers by country
+- Identify highest-performing markets
+- Create country-level visualization
+- Document BQ2 findings
+
+### MySQL Setup Status
+
+**P5-01 — Install and configure MySQL — Complete**
+
+Completed:
+
+- MySQL Community Server 8.4.11 installed
+- MySQL Server running
+- Root login confirmed
+- Terminal PATH configured
+- MySQL Workbench installed
+- Localhost connection created
+- Test SQL query completed successfully
 
 ---
 
@@ -545,33 +575,35 @@ This information will be used to improve future project estimates.
 
 ---
 
-### 10.4 Daily Execution Log
-
-Each work session will include a short execution record.
-
 #### Date
 
-2026-10-10
+2026-10-12
 
 #### Current Phase
 
 P4 — Business Analysis
 
-#### Work Package
+#### Work Packages
 
-BQ1 — Monthly Performance
+- BQ1 — Monthly Performance
+- P5-01 — Install and Configure MySQL
 
 #### Tasks
 
-- [ ] Calculate Orders change
-- [ ] Calculate Active Customers change
-- [ ] Calculate AOV change
-- [ ] Interpret Revenue drivers
-- [ ] Update analysis notes
+- [x] Calculate Orders change
+- [x] Calculate Active Customers change
+- [x] Calculate AOV change
+- [x] Interpret Revenue drivers
+- [x] Update analysis notes
+- [x] Install MySQL Community Server
+- [x] Configure MySQL command-line environment
+- [x] Install MySQL Workbench
+- [x] Create localhost connection
+- [x] Verify MySQL connection with test query
 
 #### Estimated Time
 
-3 hours
+TBD
 
 #### Actual Time
 
@@ -579,7 +611,9 @@ TBD
 
 #### Issues
 
-None
+- Initial MySQL authentication attempt failed because of keyboard
+  input mode.
+- GitHub HTTPS authentication was replaced with SSH authentication.
 
 #### Backlog
 
@@ -587,8 +621,16 @@ None
 
 #### Definition of Done
 
-Monthly Performance analysis is calculated, interpreted, and documented.
+BQ1 Monthly Performance analysis is calculated, interpreted, and
+documented.
 
+MySQL development environment is installed, configured, and verified.
+
+#### Result
+
+- BQ1 — Monthly Performance: Complete
+- P5-01 — Install and Configure MySQL: Complete
+- Next work package: BQ2 — Country Performance
 ---
 
 ## 11. Project Schedule and Milestones
@@ -600,18 +642,20 @@ Monthly Performance analysis is calculated, interpreted, and documented.
 | P2 — Data Cleaning | 3–4 hours | Complete |
 | P3 — Core KPI Analysis | 2–3 hours | Complete |
 | P4 — Business Analysis | 7–9 hours | In Progress |
-| P5 — MySQL Analysis | 6–8 hours | Not Started |
+| P5 — MySQL Analysis | 6–8 hours | In Progress |
 | P6 — Documentation | 4–6 hours | In Progress |
 | P7 — QA and Project Close | 3–4 hours | Not Started |
 
 ### Major Milestones
 
-- M1 — Clean analytical dataset complete
-- M2 — Core KPI analysis complete
-- M3 — Business analysis complete
-- M4 — MySQL validation complete
-- M5 — Documentation complete
-- M6 — Portfolio project released
+| Milestone | Description | Status |
+|---|---|---|
+| M1 | Clean analytical dataset complete | Complete |
+| M2 | Core KPI analysis complete | Complete |
+| M3 | Business analysis complete | In Progress |
+| M4 | MySQL validation complete | Not Started |
+| M5 | Documentation complete | In Progress |
+| M6 | Portfolio project released | Not Started |
 
 ---
 
@@ -620,7 +664,7 @@ Monthly Performance analysis is calculated, interpreted, and documented.
 ### Risks
 
 - Additional analysis ideas may expand the project scope.
-- MySQL setup or data import issues may delay SQL analysis.
+- MySQL data import or query validation issues may delay SQL analysis.
 - Missing CustomerID values limit some customer-level analyses.
 - December 2011 contains incomplete monthly data and must be
   interpreted carefully.

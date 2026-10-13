@@ -68,16 +68,23 @@ Unique Customers: 4,338
 Average Order Value: approximately 533
 
 
-## 4. Monthly Revenue Analysis
+## 4. Monthly Performace Analysis
 
 November 2011 had the highest monthly revenue.
 
-Revenue increased approximately 42.4% from September
-to November 2011.
+Revenue increased approximately 42.4% from September to November 2011.
 
-December 2011 contains only partial-month data,
-so December revenue should not be directly compared
-with complete months.
+During the same period:
+
+- Orders increased approximately 50.7%.
+- Active customers increased approximately 31.4%.
+- Average Order Value decreased approximately 5.5%.
+
+This increase in revenue was therefore primarily associated with higher order
+volume and increased customer activity rather than higher spending per order.
+
+December 2011 contains only partial-month data, so December performance should
+not be directly compared with complete months.
 
 
 ## 5. Next Question

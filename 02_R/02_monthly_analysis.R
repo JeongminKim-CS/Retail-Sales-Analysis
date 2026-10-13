@@ -18,22 +18,38 @@ sales_clean <- read_csv(
 
 
 # ============================================================
-# 2. Monthly Revenue
+# 2. Monthly Performance
 # ============================================================
 
-monthly_sales <- sales_clean %>%
-  mutate(
-    InvoiceMonth = floor_date(
-      InvoiceDate,
-      "month"
-    )
-  ) %>%
-  group_by(InvoiceMonth) %>%
+monthly_sales <-
+  sales_clean %>%
+  dplyr::mutate(
+    InvoiceMonth =
+      floor_date(
+        InvoiceDate,
+        "month"
+        )
+    ) %>%
+  group_by(
+    InvoiceMonth
+    ) %>%
   summarise(
-    Revenue = sum(Revenue),
-    .groups = "drop"
+    Revenue =
+      sum(Revenue),
+    Orders =
+      n_distinct(InvoiceNo),
+    Customers =
+      n_distinct(
+        CustomerID,
+        na.rm = TRUE),
+    .groups =
+      "drop"
+    ) %>%
+  dplyr::mutate(
+    AOV = Revenue / Orders
   )
 
+monthly_sales
 
 # ============================================================
 # 3. Highest Revenue Months
@@ -84,15 +100,16 @@ monthly_sales %>%
 
 
 # ============================================================
-# 5. Sep-Nov Revenue Growth
+# 5. Sep-Nov Performance Change
 # ============================================================
 
-revenue_growth_sep_nov <- monthly_sales %>%
-  filter(
+performance_change_sep_nov <-
+  monthly_sales %>%
+  dplyr::filter(
     year(InvoiceMonth) == 2011,
     month(InvoiceMonth) %in% c(9, 11)
   ) %>%
-  mutate(
+  dplyr::mutate(
     month_label = month(
       InvoiceMonth,
       label = TRUE,
@@ -100,17 +117,33 @@ revenue_growth_sep_nov <- monthly_sales %>%
       locale = "en_US.UTF-8"
     )
   ) %>%
-  select(
+  dplyr::select(
     month_label,
-    Revenue
+    Revenue,
+    Orders,
+    Customers,
+    AOV
   ) %>%
   pivot_wider(
-    names_from = month_label,
-    values_from = Revenue
+    names_from =
+      month_label,
+    values_from =
+      c(
+        Revenue,
+        Orders,
+        Customers,
+        AOV
+      )
   ) %>%
-  mutate(
+  dplyr::mutate(
     Revenue_change_pct =
-      (Nov - Sep) / Sep * 100
+      (Revenue_Nov - Revenue_Sep) / Revenue_Sep * 100,
+    Orders_change_pct =
+      (Orders_Nov - Orders_Sep) / Orders_Sep * 100,
+    Customers_change_pct =
+      (Customers_Nov - Customers_Sep) / Customers_Sep * 100,
+    AOV_change_pct =
+      (AOV_Nov - AOV_Sep) / AOV_Sep * 100
   )
 
 revenue_growth_sep_nov
