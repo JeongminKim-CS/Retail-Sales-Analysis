@@ -307,9 +307,10 @@ The project will produce the following deliverables.
 - P2-03 Exclude cancellation transactions
 - P2-04 Exclude non-sale negative or zero quantities
 - P2-05 Exclude non-positive prices
-- P2-06 Calculate Revenue
-- P2-07 Validate cleaned data
-- P2-08 Save cleaned dataset
+- P2-06 Exclude accounting adjustment records
+- P2-07 Calculate Revenue
+- P2-08 Validate cleaned data
+- P2-09 Save cleaned dataset
 
 ---
 
@@ -472,19 +473,26 @@ Key findings:
 - Create country-level visualization
 - Document BQ2 findings
 
-### MySQL Setup Status
+### MySQL Progress Status
 
-**P5-01 — Install and configure MySQL — Complete**
+- P5-01 Install and configure MySQL — Complete
+- P5-02 Create project database — Complete
+- P5-03 Create retail sales table — Complete
+- P5-04 Import cleaned dataset — Re-run required
+- P5-05 Reproduce overall KPIs — Re-validation required
+- P5-06 Reproduce monthly analysis — Re-validation required
+- P5-07 Reproduce country analysis — Not Started
+- P5-08 Reproduce product analysis — Not Started
+- P5-09 Reproduce customer analysis — Not Started
+- P5-10 SQL techniques — In Progress
+- P5-11 Compare MySQL results with R results — Not Started
 
-Completed:
+Note:
 
-- MySQL Community Server 8.4.11 installed
-- MySQL Server running
-- Root login confirmed
-- Terminal PATH configured
-- MySQL Workbench installed
-- Localhost connection created
-- Test SQL query completed successfully
+The cleaned dataset was updated after an accounting adjustment record
+("Adjust bad debt") was identified during QA. The MySQL dataset and
+previous KPI/monthly results will therefore be refreshed and validated
+after the R business analysis is completed.
 
 ---
 
@@ -577,7 +585,7 @@ This information will be used to improve future project estimates.
 
 #### Date
 
-2026-10-12
+2026-10-15
 
 #### Current Phase
 
@@ -585,51 +593,32 @@ P4 — Business Analysis
 
 #### Work Packages
 
-- BQ1 — Monthly Performance
-- P5-01 — Install and Configure MySQL
+- P2 — Data Cleaning QA Correction
+- P5 — MySQL Analysis
+- BQ2 — Country Performance Preparation
 
 #### Tasks
 
-- [x] Calculate Orders change
-- [x] Calculate Active Customers change
-- [x] Calculate AOV change
-- [x] Interpret Revenue drivers
+- [x] Exclude "Adjust bad debt" accounting adjustment
+- [x] Regenerate cleaned dataset
+- [x] Recalculate overall KPIs
+- [x] Re-run monthly analysis
 - [x] Update analysis notes
-- [x] Install MySQL Community Server
-- [x] Configure MySQL command-line environment
-- [x] Install MySQL Workbench
-- [x] Create localhost connection
-- [x] Verify MySQL connection with test query
-
-#### Estimated Time
-
-TBD
-
-#### Actual Time
-
-TBD
+- [x] Document MySQL progress through P5-06
+- [ ] Begin BQ2 country analysis
 
 #### Issues
 
-- Initial MySQL authentication attempt failed because of keyboard
-  input mode.
-- GitHub HTTPS authentication was replaced with SSH authentication.
-
-#### Backlog
-
-None
-
-#### Definition of Done
-
-BQ1 Monthly Performance analysis is calculated, interpreted, and
-documented.
-
-MySQL development environment is installed, configured, and verified.
+- A positive accounting adjustment passed the initial numeric cleaning
+  rules and required an additional cleaning rule.
+- MySQL import and KPI/monthly results must be refreshed after the
+  cleaned dataset update.
 
 #### Result
 
-- BQ1 — Monthly Performance: Complete
-- P5-01 — Install and Configure MySQL: Complete
+- Data cleaning QA correction complete
+- BQ1 results revalidated
+- MySQL P5-04 through P5-06 marked for re-validation
 - Next work package: BQ2 — Country Performance
 ---
 
