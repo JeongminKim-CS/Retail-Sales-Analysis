@@ -10,20 +10,22 @@ library(tidyverse)
 # 1. Import Cleaned Data
 # ============================================================
 
-sales_clean <- read_csv(
-  "01_data/02_processed/sales_clean.csv",
-  col_types = cols(
-    InvoiceNo = col_character(),
-    StockCode = col_character(),
-    Description = col_character(),
-    Quantity = col_integer(),
-    InvoiceDate = col_datetime(),
-    UnitPrice = col_double(),
-    CustomerID = col_double(),
-    Country = col_character(),
-    Revenue = col_double()
+sales_clean <-
+  readr::read_csv(
+    "01_data/02_processed/sales_clean.csv",
+    col_types = readr::cols(
+      InvoiceNo = readr::col_character(),
+      StockCode = readr::col_character(),
+      Description = readr::col_character(),
+      Quantity = readr::col_integer(),
+      InvoiceDate = readr::col_datetime(),
+      UnitPrice = readr::col_double(),
+      CustomerID = readr::col_double(),
+      Country = readr::col_character(),
+      IsCancellation = readr::col_logical(),
+      Revenue = readr::col_double()
+    )
   )
-)
 
 # ============================================================
 # 2. Country-Level Performance
@@ -35,15 +37,17 @@ country_sales <-
     Country
   ) %>%
   dplyr::summarise(
-    Revenue = sum(Revenue),
-    Orders = dplyr::n_distinct(
-      InvoiceNo,
-      na.rm = TRUE
-    ),
-    Customers = dplyr::n_distinct(
-      CustomerID,
-      na.rm = TRUE
-    ),
+    Revenue =
+      sum(Revenue),
+    Orders =
+      dplyr::n_distinct(
+        InvoiceNo[!IsCancellation]
+      ),
+    Customers =
+      dplyr::n_distinct(
+        CustomerID[!IsCancellation],
+        na.rm = TRUE
+      ),
     .groups = "drop"
   )
 
@@ -91,7 +95,10 @@ country_revenue_plot <-
   ggplot(
     top_10_countries,
     aes(
-      x = reorder(Country, Revenue),
+      x = reorder(
+        Country,
+        Revenue
+      ),
       y = Revenue
     )
   ) +
@@ -120,7 +127,6 @@ ggsave(
   dpi = 300
 )
 
-
 # ============================================================
 # 6. Market Concentration
 # ============================================================
@@ -131,7 +137,8 @@ top_5_revenue_share <-
     n = 5
   ) %>%
   dplyr::summarise(
-    Revenue_Share = sum(Revenue_Share)
+    Revenue_Share =
+      sum(Revenue_Share)
   )
 
 top_5_revenue_share

@@ -120,7 +120,7 @@ nonpositive_price <-
 
 nrow(nonpositive_price)
 
-# Zero pirce transactions
+# Zero price transactions
 zero_price <- 
   nonpositive_price %>%
   dplyr::filter(
@@ -162,15 +162,16 @@ sales_classified %>%
 # For sales-performance analysis:
 #
 # 1. Remove exact duplicate rows
-# 2. Exclude cancelled transactions
-#     (InvoiceNo starts with "C")
-# 3. Exclude non-sale inventory adjustments
-#     (Quantity <= 0)
+# 2. Retain valid cancellation transactions
+#     (InvoiceNo starts with "C" and Quantity < 0)
+# 3. Exclude non-cancellation inventory adjustments
+#     (Quantity <= 0 without a cancellation InvoiceNo)
 # 4. Exclude transactions with non-positive UnitPrice
 # 5. Exclude accounting adjustment records
 #     (Description == "Adjust bad debt")
 # 6. Preserve missing CustomerID for overall sales analysis
-
+# 7. Calculate Revenue as Quantity * UnitPrice
+#     so cancellation transactions contribute negative Revenue
 
 # ============================================================
 # 7. Clean Data
@@ -179,19 +180,66 @@ sales_classified %>%
 sales_clean <-
   sales_raw %>%
   dplyr::distinct() %>%
+  dplyr::mutate(
+    IsCancellation =
+      stringr::str_starts(
+        InvoiceNo,
+        "C"
+      )
+  ) %>%
   dplyr::filter(
-    !str_starts(
-      InvoiceNo,
-      "C"
-      ),
-    Quantity > 0,
     UnitPrice > 0,
-    Description != "Adjust bad debt"
-    ) %>%
+    Description != "Adjust bad debt",
+    Quantity > 0 |
+      (
+        IsCancellation &
+          Quantity < 0
+      )
+  ) %>%
   dplyr::mutate(
     Revenue = Quantity * UnitPrice
   )
-  
+
+# Cleaning QA
+sales_clean %>%
+  dplyr::summarise(
+    Rows = dplyr::n(),
+    Non_Cancellation_Negative =
+      sum(
+        !IsCancellation &
+          Quantity <= 0
+      ),
+    Invalid_Cancellation =
+      sum(
+        IsCancellation &
+          Quantity >= 0
+      ),
+    Non_Positive_Price =
+      sum(UnitPrice <= 0),
+    Adjust_Bad_Debt =
+      sum(
+        Description == "Adjust bad debt",
+        na.rm = TRUE
+      )
+  )
+
+# Cancellation impact
+sales_clean %>%
+  dplyr::summarise(
+    Cancellation_Rows =
+      sum(IsCancellation),
+    Cancellation_Revenue =
+      sum(
+        Revenue[IsCancellation]
+      ),
+    Gross_Sales_Revenue =
+      sum(
+        Revenue[!IsCancellation]
+      ),
+    Net_Revenue =
+      sum(Revenue)
+  )
+
 # ============================================================
 # 8. Validate Cleaned Data
 # ============================================================
@@ -205,23 +253,40 @@ sum(
   duplicated(sales_clean)
 )
 
-# Quantity should be positive
-min(
-  sales_clean$Quantity
-  )
-
-# Unit price should be positive
-min(
-  sales_clean$UnitPrice
-  )
-
-# Cancelled invoices should be zero
+# Non-cancellation transactions should have positive Quantity
 sales_clean %>%
   dplyr::filter(
-    str_starts(
-      InvoiceNo, 
-      "C"
-    )
+    !IsCancellation,
+    Quantity <= 0
+  ) %>%
+  nrow()
+
+# Cancellation transactions should have negative Quantity
+sales_clean %>%
+  dplyr::filter(
+    IsCancellation,
+    Quantity >= 0
+  ) %>%
+  nrow()
+
+# Non-positive UnitPrice should be zero
+sales_clean %>%
+  dplyr::filter(
+    UnitPrice <= 0
+  ) %>%
+  nrow()
+
+# Accounting adjustments should be excluded
+sales_clean %>%
+  dplyr::filter(
+    Description == "Adjust bad debt"
+  ) %>%
+  nrow()
+
+# Cancellation records should remain in the dataset
+sales_clean %>%
+  dplyr::filter(
+    IsCancellation
   ) %>%
   nrow()
 
@@ -229,25 +294,50 @@ sales_clean %>%
 # 9. Overall KPIs
 # ============================================================
 
-sales_clean %>%
+net_revenue <-
+  sum(sales_clean$Revenue)
+
+total_orders <-
+  sales_clean %>%
+  dplyr::filter(
+    !IsCancellation
+  ) %>%
   dplyr::summarise(
-    total_revenue = 
-      sum(Revenue),
-    total_orders = 
-      n_distinct(InvoiceNo),
-    total_customers =
-      n_distinct(
-        CustomerID,
-        na.rm = TRUE
-      ),
-    aov = total_revenue / total_orders
+    Orders = dplyr::n_distinct(InvoiceNo)
+  ) %>%
+  dplyr::pull(Orders)
+
+total_customers <-
+  sales_clean %>%
+  dplyr::filter(
+    !IsCancellation
+  ) %>%
+  dplyr::summarise(
+    Customers = dplyr::n_distinct(
+      CustomerID,
+      na.rm = TRUE
+    )
+  ) %>%
+  dplyr::pull(Customers)
+
+aov <-
+  net_revenue / total_orders
+
+overall_kpis <-
+  tibble::tibble(
+    Net_Revenue = net_revenue,
+    Orders = total_orders,
+    Customers = total_customers,
+    AOV = aov
   )
+
+overall_kpis
 
 # ============================================================
 # 10. Save Processed Data
 # ============================================================
 
-write_csv(
+readr::write_csv(
   sales_clean,
   "01_data/02_processed/sales_clean.csv"
 )

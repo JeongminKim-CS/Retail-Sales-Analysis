@@ -11,20 +11,22 @@ library(lubridate)
 # 1. Import Cleaned Data
 # ============================================================
 
-sales_clean <- read_csv(
-  "01_data/02_processed/sales_clean.csv",
-  col_types = cols(
-    InvoiceNo = col_character(),
-    StockCode = col_character(),
-    Description = col_character(),
-    Quantity = col_integer(),
-    InvoiceDate = col_datetime(),
-    UnitPrice = col_double(),
-    CustomerID = col_double(),
-    Country = col_character(),
-    Revenue = col_double()
+sales_clean <-
+  readr::read_csv(
+    "01_data/02_processed/sales_clean.csv",
+    col_types = readr::cols(
+      InvoiceNo = readr::col_character(),
+      StockCode = readr::col_character(),
+      Description = readr::col_character(),
+      Quantity = readr::col_integer(),
+      InvoiceDate = readr::col_datetime(),
+      UnitPrice = readr::col_double(),
+      CustomerID = readr::col_double(),
+      Country = readr::col_character(),
+      IsCancellation = readr::col_logical(),
+      Revenue = readr::col_double()
+    )
   )
-)
 
 
 
@@ -35,29 +37,32 @@ sales_clean <- read_csv(
 monthly_sales <-
   sales_clean %>%
   dplyr::mutate(
-    InvoiceMonth =
-      floor_date(
+    Month =
+      lubridate::floor_date(
         InvoiceDate,
         "month"
-        )
-    ) %>%
-  group_by(
-    InvoiceMonth
-    ) %>%
-  summarise(
+      )
+  ) %>%
+  dplyr::group_by(
+    Month
+  ) %>%
+  dplyr::summarise(
     Revenue =
       sum(Revenue),
     Orders =
-      n_distinct(InvoiceNo),
+      dplyr::n_distinct(
+        InvoiceNo[!IsCancellation]
+      ),
     Customers =
-      n_distinct(
-        CustomerID,
-        na.rm = TRUE),
-    .groups =
-      "drop"
-    ) %>%
+      dplyr::n_distinct(
+        CustomerID[!IsCancellation],
+        na.rm = TRUE
+      ),
+    .groups = "drop"
+  ) %>%
   dplyr::mutate(
-    AOV = Revenue / Orders
+    AOV =
+      Revenue / Orders
   )
 
 monthly_sales
@@ -81,7 +86,7 @@ monthly_revenue_plot <-
   monthly_sales %>%
   ggplot(
     aes(
-      x = InvoiceMonth,
+      x = Month,
       y = Revenue
     )
   ) +
@@ -98,7 +103,7 @@ monthly_revenue_plot <-
       suffix = "M"
     )
   ) +
-  scale_x_date(
+  scale_x_datetime(
     date_breaks = "1 month",
     date_labels = "%b\n%Y"
   ) +
@@ -126,12 +131,12 @@ ggsave(
 performance_change_sep_nov <-
   monthly_sales %>%
   dplyr::filter(
-    year(InvoiceMonth) == 2011,
-    month(InvoiceMonth) %in% c(9, 11)
+    year(Month) == 2011,
+    month(Month) %in% c(9, 11)
   ) %>%
   dplyr::mutate(
     month_label = month(
-      InvoiceMonth,
+      Month,
       label = TRUE,
       abbr = TRUE,
       locale = "en_US.UTF-8"
@@ -165,3 +170,5 @@ performance_change_sep_nov <-
     AOV_change_pct =
       (AOV_Nov - AOV_Sep) / AOV_Sep * 100
   )
+
+performance_change_sep_nov

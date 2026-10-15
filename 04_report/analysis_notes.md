@@ -3,12 +3,14 @@
 ## 1. Data Audit
 
 ### Missing CustomerID
+
 135,080 transactions have missing CustomerID values.
 
 Missing CustomerID records are retained for overall sales analysis,
 but excluded when customer-level metrics are calculated.
 
 ### Duplicate Rows
+
 5,268 exact duplicate rows were identified.
 
 Exact duplicates were removed before analysis.
@@ -51,54 +53,86 @@ were excluded.
 The following rules were applied:
 
 1. Remove exact duplicate rows.
-2. Exclude cancellation invoices beginning with "C".
-3. Exclude Quantity <= 0.
-4. Exclude UnitPrice <= 0.
+2. Retain valid cancellation transactions where InvoiceNo begins with
+   "C" and Quantity is negative.
+3. Exclude non-cancellation transactions with Quantity <= 0 because
+   they primarily represent inventory adjustments rather than sales.
+4. Exclude transactions with UnitPrice <= 0.
 5. Exclude "Adjust bad debt" records because they represent accounting
    adjustments rather than retail sales transactions.
 6. Preserve missing CustomerID for overall sales analysis.
+7. Calculate Revenue as Quantity * UnitPrice so cancellation
+   transactions contribute negative revenue.
 
 During QA, a positive "Adjust bad debt" record passed the initial numeric
 cleaning rules and was later identified as an accounting adjustment.
 The cleaning rule was updated accordingly.
 
+### Cancellation Handling
+
+During product-level QA, several unusually large transactions were found to
+have matching cancellation invoices with equal negative quantities.
+
+The initial cleaning approach removed cancellation invoices while retaining
+the original positive sales transactions. This overstated revenue because
+fully cancelled sales remained in the analysis.
+
+The methodology was revised to retain valid cancellation transactions as
+negative quantities and negative revenue.
+
+Non-cancellation negative-quantity records, such as inventory adjustments,
+remain excluded.
+
+After cleaning:
+
+- 9,251 cancellation rows were retained
+- Gross sales revenue was approximately 10,631,049
+- Cancellation revenue was approximately -893,980
+- Net revenue was approximately 9,737,069
+
+As a result, all revenue metrics in this project are now reported on a
+net-revenue basis.
+
 
 ## 3. Overall KPIs
 
-Total Revenue: 10,631,049
+- Net Revenue: 9,737,069
+- Sales Orders: 19,959
+- Unique Customers: 4,338
+- Average Order Value: 487.85
 
-Total Orders: 19,959
+Revenue includes valid cancellation transactions as negative revenue.
 
-Unique Customers: 4,338
+Orders and customers are calculated from non-cancellation sales
+transactions.
 
-Average Order Value: 532.64
+Average Order Value is calculated as net revenue divided by the number
+of non-cancellation sales orders.
 
 
 ## 4. Monthly Performance Analysis
 
-November 2011 had the highest monthly revenue.
+From September to November 2011:
 
-Revenue increased approximately 42.4% from September to November 2011.
+- Net Revenue increased by approximately 43.1%
+- Orders increased by approximately 50.7%
+- Active Customers increased by approximately 31.4%
+- AOV decreased by approximately 5.1%
 
-During the same period:
+The increase in net revenue was therefore driven primarily by higher order
+volume and increased customer activity rather than higher revenue per order.
 
-- Orders increased approximately 50.7%.
-- Active customers increased approximately 31.4%.
-- Average Order Value decreased approximately 5.5%.
+December 2011 is a partial month and should not be directly compared with
+full months.
 
-This increase in revenue was therefore primarily associated with higher order
-volume and increased customer activity rather than higher spending per order.
-
-December 2011 contains only partial-month data, so December performance should
-not be directly compared with complete months.
 
 ## 5. Country Performance
 
 The United Kingdom was the dominant market, contributing approximately
-84.6% of total revenue.
+84.0% of total net revenue.
 
-The top five countries together accounted for approximately 94.0% of
-total revenue, indicating a high concentration of sales in a small
+The top five countries together accounted for approximately 93.9% of
+total net revenue, indicating a high concentration of sales in a small
 number of markets.
 
 The United Kingdom also had by far the highest number of orders and
@@ -112,10 +146,10 @@ The next analysis will evaluate sales performance by product.
 
 The analysis will examine:
 
-- Revenue by product
-- Quantity sold by product
-- Top products by revenue
-- Top products by sales volume
+- Net revenue by product
+- Net quantity sold by product
+- Top products by net revenue
+- Top products by net sales volume
 
 The objective is to identify the products contributing most strongly
-to sales performance.
+to sales performance after accounting for cancellations.
