@@ -54,21 +54,27 @@ The following rules were applied:
 2. Exclude cancellation invoices beginning with "C".
 3. Exclude Quantity <= 0.
 4. Exclude UnitPrice <= 0.
-5. Preserve missing CustomerID for overall sales analysis.
+5. Exclude "Adjust bad debt" records because they represent accounting
+   adjustments rather than retail sales transactions.
+6. Preserve missing CustomerID for overall sales analysis.
+
+During AQ, a positive "Adjust bad debt" record passed the initial numeric cleaning
+rules and was later identified as an accounting adjustment during QA.
+The cleaning rule was updated accordingly.
 
 
 ## 3. Overall KPIs
 
-Total Revenue: 10,642,111
+Total Revenue: 10,631,049
 
-Total Orders: 19,960
+Total Orders: 19,959
 
 Unique Customers: 4,338
 
-Average Order Value: approximately 533
+Average Order Value: 532.64
 
 
-## 4. Monthly Performace Analysis
+## 4. Monthly Performance Analysis
 
 November 2011 had the highest monthly revenue.
 
@@ -86,14 +92,16 @@ volume and increased customer activity rather than higher spending per order.
 December 2011 contains only partial-month data, so December performance should
 not be directly compared with complete months.
 
+## 5. Next Analysis — Country Performance
 
-## 5. Next Question
+The next analysis will evaluate sales performance by country.
 
-What drove the 42.4% revenue increase between
-September and November 2011?
+The analysis will examine:
 
-Investigate:
+- Revenue by country
+- Orders by country
+- Active customers by country
+- Highest-performing markets
 
-- Orders
-- Active customers
-- Average order value
+The objective is to identify which countries contribute most strongly
+to overall business performance.

@@ -13,8 +13,19 @@ library(lubridate)
 
 sales_clean <- read_csv(
   "01_data/02_processed/sales_clean.csv",
-  show_col_types = FALSE
+  col_types = cols(
+    InvoiceNo = col_character(),
+    StockCode = col_character(),
+    Description = col_character(),
+    Quantity = col_integer(),
+    InvoiceDate = col_datetime(),
+    UnitPrice = col_double(),
+    CustomerID = col_double(),
+    Country = col_character(),
+    Revenue = col_double()
+  )
 )
+
 
 
 # ============================================================
@@ -145,5 +156,3 @@ performance_change_sep_nov <-
     AOV_change_pct =
       (AOV_Nov - AOV_Sep) / AOV_Sep * 100
   )
-
-revenue_growth_sep_nov

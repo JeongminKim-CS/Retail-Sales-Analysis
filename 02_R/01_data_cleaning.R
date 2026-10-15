@@ -156,18 +156,20 @@ sales_classified %>%
   )
 
 # ============================================================
-# 6. Data cleaning Rules
+# 6. Data Cleaning Rules
 # ============================================================
 
 # For sales-performance analysis:
 #
 # 1. Remove exact duplicate rows
 # 2. Exclude cancelled transactions
-#     (InvoiceNo starts with "C)
+#     (InvoiceNo starts with "C")
 # 3. Exclude non-sale inventory adjustments
 #     (Quantity <= 0)
 # 4. Exclude transactions with non-positive UnitPrice
-# 5. Preserve missing CustomerID for overall sales analysis
+# 5. Exclude accounting adjustment records
+#     (Description == "Adjust bad debt")
+# 6. Preserve missing CustomerID for overall sales analysis
 
 
 # ============================================================
@@ -183,7 +185,8 @@ sales_clean <-
       "C"
       ),
     Quantity > 0,
-    UnitPrice > 0
+    UnitPrice > 0,
+    Description != "Adjust bad debt"
     ) %>%
   dplyr::mutate(
     Revenue = Quantity * UnitPrice
