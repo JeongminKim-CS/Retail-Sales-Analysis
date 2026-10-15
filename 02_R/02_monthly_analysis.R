@@ -77,7 +77,8 @@ monthly_sales %>%
 # 4. Monthly Revenue Visualization
 # ============================================================
 
-monthly_sales %>%
+monthly_revenue_plot <-
+  monthly_sales %>%
   ggplot(
     aes(
       x = InvoiceMonth,
@@ -108,6 +109,14 @@ monthly_sales %>%
       hjust = 1
     )
   )
+
+ggsave(
+  filename = "03_figures/monthly_revenue_trend.png",
+  plot = monthly_revenue_plot,
+  width = 8,
+  height = 5,
+  dpi = 300
+)
 
 
 # ============================================================
