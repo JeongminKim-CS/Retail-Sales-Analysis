@@ -58,8 +58,8 @@ The following rules were applied:
    adjustments rather than retail sales transactions.
 6. Preserve missing CustomerID for overall sales analysis.
 
-During AQ, a positive "Adjust bad debt" record passed the initial numeric cleaning
-rules and was later identified as an accounting adjustment during QA.
+During QA, a positive "Adjust bad debt" record passed the initial numeric
+cleaning rules and was later identified as an accounting adjustment.
 The cleaning rule was updated accordingly.
 
 
@@ -92,16 +92,30 @@ volume and increased customer activity rather than higher spending per order.
 December 2011 contains only partial-month data, so December performance should
 not be directly compared with complete months.
 
-## 5. Next Analysis — Country Performance
+## 5. Country Performance
 
-The next analysis will evaluate sales performance by country.
+The United Kingdom was the dominant market, contributing approximately
+84.6% of total revenue.
+
+The top five countries together accounted for approximately 94.0% of
+total revenue, indicating a high concentration of sales in a small
+number of markets.
+
+The United Kingdom also had by far the highest number of orders and
+active customers, indicating that its strong revenue performance was
+supported by broad transaction and customer activity.
+
+
+## 6. Next Analysis — Product Performance
+
+The next analysis will evaluate sales performance by product.
 
 The analysis will examine:
 
-- Revenue by country
-- Orders by country
-- Active customers by country
-- Highest-performing markets
+- Revenue by product
+- Quantity sold by product
+- Top products by revenue
+- Top products by sales volume
 
-The objective is to identify which countries contribute most strongly
-to overall business performance.
+The objective is to identify the products contributing most strongly
+to sales performance.
