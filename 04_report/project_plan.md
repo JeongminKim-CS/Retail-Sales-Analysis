@@ -304,11 +304,11 @@ The project will produce the following deliverables.
 
 - P2-01 Define cleaning rules
 - P2-02 Remove exact duplicates
-- P2-03 Exclude cancellation transactions
-- P2-04 Exclude non-sale negative or zero quantities
+- P2-03 Retain valid cancellation transactions
+- P2-04 Exclude non-cancellation negative or zero quantities
 - P2-05 Exclude non-positive prices
 - P2-06 Exclude accounting adjustment records
-- P2-07 Calculate Revenue
+- P2-07 Calculate net Revenue
 - P2-08 Validate cleaned data
 - P2-09 Save cleaned dataset
 
@@ -435,43 +435,59 @@ The project will produce the following deliverables.
 
 Current focus:
 
-**BQ2 — Country Performance**
-
-### Completed Work Package
-
-**BQ1 — Monthly Performance — Complete**
+**BQ3 — Product Performance**
 
 Completed:
 
-- Monthly Revenue calculation
-- Monthly Orders calculation
-- Monthly Active Customers calculation
-- Monthly Average Order Value calculation
-- Monthly Revenue visualization
-- Identification of November 2011 as the highest-revenue month
-- September-to-November performance change analysis
-- Revenue-driver interpretation
-- BQ1 documentation
+- BQ1 — Monthly Performance
+- BQ2 — Country Performance
+- Cancellation methodology QA and correction
+- BQ1 and BQ2 re-validation using net revenue
 
-Key findings:
+### QA Update — Cancellation Handling
 
-- Revenue increased approximately **42.4%** from September to November 2011.
-- Orders increased approximately **50.7%**.
-- Active customers increased approximately **31.4%**.
-- Average Order Value decreased approximately **5.5%**.
-- Revenue growth was primarily associated with higher order volume and
-  increased customer activity rather than higher spending per order.
-- December 2011 contains partial-month data and should not be directly
-  compared with complete months.
+During BQ3 product-level QA, unusually large product transactions were
+found to have matching cancellation invoices with equal negative
+quantities.
 
-### Current BQ2 Tasks
+The original cleaning method removed cancellation invoices while
+retaining the original positive transactions, which overstated revenue.
 
-- Calculate Revenue by country
-- Calculate Orders by country
-- Calculate Active Customers by country
-- Identify highest-performing markets
-- Create country-level visualization
-- Document BQ2 findings
+The cleaning methodology was revised to retain valid cancellation
+transactions as negative revenue while excluding non-cancellation
+inventory adjustments.
+
+Updated overall KPIs:
+
+- Net Revenue: 9,737,069
+- Sales Orders: 19,959
+- Unique Customers: 4,338
+- Average Order Value: 487.85
+
+Updated BQ1 finding:
+
+- Net Revenue increased approximately 43.1% from September to November
+  2011.
+- Orders increased approximately 50.7%.
+- Active Customers increased approximately 31.4%.
+- AOV decreased approximately 5.1%.
+
+Updated BQ2 finding:
+
+- United Kingdom contributed approximately 84.0% of total net revenue.
+- The top five countries contributed approximately 93.9% of total
+  net revenue.
+
+Current BQ3 tasks:
+
+- Calculate net revenue by product
+- Calculate net quantity by product
+- Identify top products by net revenue
+- Identify top products by net sales volume
+- Exclude non-product service codes where appropriate
+- Validate unusual product-level results
+- Create product visualization
+- Document findings
 
 ### MySQL Progress Status
 
@@ -489,10 +505,13 @@ Key findings:
 
 Note:
 
-The cleaned dataset was updated after an accounting adjustment record
-("Adjust bad debt") was identified during QA. The MySQL dataset and
-previous KPI/monthly results will therefore be refreshed and validated
-after the R business analysis is completed.
+The cleaned dataset was revised during QA after identifying both an
+accounting adjustment record ("Adjust bad debt") and an issue with the
+initial cancellation-handling methodology.
+
+The processed dataset now includes `IsCancellation`. The MySQL dataset,
+table schema, import script, and previously calculated KPI/monthly results
+must therefore be refreshed and re-validated before SQL analysis continues.
 
 ---
 
@@ -593,33 +612,41 @@ P4 — Business Analysis
 
 #### Work Packages
 
-- P2 — Data Cleaning QA Correction
-- P5 — MySQL Analysis
-- BQ2 — Country Performance Preparation
+- P2 — Data Cleaning QA
+- BQ1 — Monthly Performance Re-validation
+- BQ2 — Country Performance Re-validation
+- BQ3 — Product Performance
 
 #### Tasks
 
-- [x] Exclude "Adjust bad debt" accounting adjustment
-- [x] Regenerate cleaned dataset
-- [x] Recalculate overall KPIs
+- [x] Identify cancellation-handling issue during product QA
+- [x] Revise cancellation cleaning methodology
+- [x] Recalculate overall KPIs using net revenue
 - [x] Re-run monthly analysis
+- [x] Re-run country analysis
 - [x] Update analysis notes
-- [x] Document MySQL progress through P5-06
-- [ ] Begin BQ2 country analysis
+- [ ] Complete product performance analysis
 
 #### Issues
 
-- A positive accounting adjustment passed the initial numeric cleaning
-  rules and required an additional cleaning rule.
-- MySQL import and KPI/monthly results must be refreshed after the
-  cleaned dataset update.
+The original cleaning method removed cancellation invoices while retaining
+their original positive sales transactions, causing revenue overstatement.
+
+The methodology was revised to retain valid cancellation transactions as
+negative revenue.
+
+#### Definition of Done
+
+Cancellation methodology is corrected and documented, BQ1 and BQ2 are
+re-validated, and BQ3 can continue using the revised analytical dataset.
 
 #### Result
 
-- Data cleaning QA correction complete
-- BQ1 results revalidated
-- MySQL P5-04 through P5-06 marked for re-validation
-- Next work package: BQ2 — Country Performance
+- Cancellation QA correction: Complete
+- BQ1 re-validation: Complete
+- BQ2 re-validation: Complete
+- Next work package: BQ3 — Product Performance
+
 ---
 
 ## 11. Project Schedule and Milestones
