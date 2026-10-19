@@ -170,18 +170,43 @@ net quantity but 142nd in net revenue.
 This indicates that product performance should be evaluated using both
 revenue and sales volume rather than either metric alone.
 
-## 7. Next Analysis — Customer Performance
+## 7. Customer Performance
 
-The next analysis will evaluate customer-level revenue contribution.
+Customer-level analysis was limited to transactions with a valid
+CustomerID.
 
-The analysis will examine:
+Active customers were defined as customers with at least one
+non-cancellation sales order. Cancellation transactions were retained
+and reflected as negative revenue when calculating customer-level net
+revenue.
 
-- Net revenue by customer
-- Highest-value customers
-- Revenue concentration among top customers
+A total of 4,338 active customers were identified.
 
-Customer-level analysis will include only transactions with valid
-CustomerID values.
+The top 10 customers generated approximately 16.5% of net revenue
+attributable to active customers.
 
-The objective is to determine how strongly revenue is concentrated among
-a relatively small number of customers.
+The top 1% of active customers, representing 44 customers, generated
+approximately 30.0% of active-customer net revenue.
+
+This indicates that revenue is meaningfully concentrated among a
+relatively small group of high-value customers.
+
+Transactions associated with valid CustomerID values accounted for
+approximately 85.0% of total project net revenue. Therefore,
+customer-level analysis does not cover all revenue because transactions
+with missing CustomerID values cannot be assigned to individual
+customers.
+
+Thirty-three CustomerID values appeared only in cancellation
+transactions and had no non-cancellation sales orders. These customers
+were excluded from the active-customer population used for revenue
+concentration analysis.
+
+## 8. Next Analysis — Final Business Insights
+
+The next analysis will consolidate findings from monthly, country,
+product, and customer performance analyses.
+
+The objective is to identify three to five key business insights,
+document major analytical limitations, and prepare the final business
+summary.

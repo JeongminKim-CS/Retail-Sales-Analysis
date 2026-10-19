@@ -435,42 +435,44 @@ The project will produce the following deliverables.
 
 Current focus:
 
-**BQ4 — Customer Performance**
+**BQ5 — Final Business Insights**
 
 Completed:
 
 - BQ1 — Monthly Performance
 - BQ2 — Country Performance
 - BQ3 — Product Performance
+- BQ4 — Customer Performance
 - Cancellation methodology QA and correction
 - BQ1 and BQ2 re-validation using net revenue
 
-### BQ3 Completion Summary
+### BQ4 Completion Summary
 
-Product performance analysis was completed using StockCode as the
-product identifier.
+Customer performance analysis was completed using active customers with
+a valid CustomerID and at least one non-cancellation sales order.
 
-Product codes were normalized to uppercase, and non-product transaction
-codes were excluded from product rankings.
+Cancellation transactions were retained as negative revenue when
+calculating customer-level net revenue.
 
 Key findings:
 
-- REGENCY CAKESTAND 3 TIER ranked 1st in net revenue at approximately
-  164,459.
-- POPCORN HOLDER ranked 1st in net quantity with 56,427 units.
-- Five products appeared in both the top 10 by net revenue and the
-  top 10 by net quantity.
-- Revenue and quantity rankings differed substantially for several
-  products, showing that product performance should be evaluated using
-  both revenue and sales volume.
+- 4,338 active customers were identified.
+- The top 10 customers generated approximately 16.5% of active-customer
+  net revenue.
+- The top 1% of active customers, representing 44 customers, generated
+  approximately 30.0% of active-customer net revenue.
+- Transactions with valid CustomerID values accounted for approximately
+  85.0% of total project net revenue.
+- Thirty-three CustomerID values appeared only in cancellation
+  transactions and were excluded from the active-customer population.
 
-Current BQ4 tasks:
+### Current BQ5 Tasks
 
-- Calculate net revenue by customer
-- Identify highest-value customers
-- Evaluate revenue concentration among top customers
-- Create customer-level visualization
-- Document findings
+- Review findings from BQ1–BQ4
+- Select three to five key business insights
+- Develop business interpretation
+- Identify major analytical limitations
+- Prepare the final business summary
 
 ### MySQL Progress Status
 
@@ -591,7 +593,7 @@ This information will be used to improve future project estimates.
 
 #### Current Phase
 
-P4 — Business Analysis
+BQ5 - Final Business Insights
 
 #### Work Packages
 
@@ -599,6 +601,7 @@ P4 — Business Analysis
 - BQ1 — Monthly Performance Re-validation
 - BQ2 — Country Performance Re-validation
 - BQ3 — Product Performance
+- BQ4 — Customer Performance
 
 #### Tasks
 
@@ -609,6 +612,7 @@ P4 — Business Analysis
 - [x] Re-run country analysis
 - [x] Update analysis notes
 - [x] Complete product performance analysis
+- [x] Complete customer performance analysis
 
 #### Result
 
@@ -616,7 +620,8 @@ P4 — Business Analysis
 - BQ1 re-validation: Complete
 - BQ2 re-validation: Complete
 - BQ3 Product Performance: Complete
-- Next work package: BQ4 — Customer Performance
+- BQ4 — Customer Performance : Complete
+- Next work package: BQ5 - Final Business Insights
 
 ---
 
