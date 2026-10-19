@@ -435,58 +435,41 @@ The project will produce the following deliverables.
 
 Current focus:
 
-**BQ3 — Product Performance**
+**BQ4 — Customer Performance**
 
 Completed:
 
 - BQ1 — Monthly Performance
 - BQ2 — Country Performance
+- BQ3 — Product Performance
 - Cancellation methodology QA and correction
 - BQ1 and BQ2 re-validation using net revenue
 
-### QA Update — Cancellation Handling
+### BQ3 Completion Summary
 
-During BQ3 product-level QA, unusually large product transactions were
-found to have matching cancellation invoices with equal negative
-quantities.
+Product performance analysis was completed using StockCode as the
+product identifier.
 
-The original cleaning method removed cancellation invoices while
-retaining the original positive transactions, which overstated revenue.
+Product codes were normalized to uppercase, and non-product transaction
+codes were excluded from product rankings.
 
-The cleaning methodology was revised to retain valid cancellation
-transactions as negative revenue while excluding non-cancellation
-inventory adjustments.
+Key findings:
 
-Updated overall KPIs:
+- REGENCY CAKESTAND 3 TIER ranked 1st in net revenue at approximately
+  164,459.
+- POPCORN HOLDER ranked 1st in net quantity with 56,427 units.
+- Five products appeared in both the top 10 by net revenue and the
+  top 10 by net quantity.
+- Revenue and quantity rankings differed substantially for several
+  products, showing that product performance should be evaluated using
+  both revenue and sales volume.
 
-- Net Revenue: 9,737,069
-- Sales Orders: 19,959
-- Unique Customers: 4,338
-- Average Order Value: 487.85
+Current BQ4 tasks:
 
-Updated BQ1 finding:
-
-- Net Revenue increased approximately 43.1% from September to November
-  2011.
-- Orders increased approximately 50.7%.
-- Active Customers increased approximately 31.4%.
-- AOV decreased approximately 5.1%.
-
-Updated BQ2 finding:
-
-- United Kingdom contributed approximately 84.0% of total net revenue.
-- The top five countries contributed approximately 93.9% of total
-  net revenue.
-
-Current BQ3 tasks:
-
-- Calculate net revenue by product
-- Calculate net quantity by product
-- Identify top products by net revenue
-- Identify top products by net sales volume
-- Exclude non-product service codes where appropriate
-- Validate unusual product-level results
-- Create product visualization
+- Calculate net revenue by customer
+- Identify highest-value customers
+- Evaluate revenue concentration among top customers
+- Create customer-level visualization
 - Document findings
 
 ### MySQL Progress Status
@@ -604,7 +587,7 @@ This information will be used to improve future project estimates.
 
 #### Date
 
-2026-10-15
+2026-10-19
 
 #### Current Phase
 
@@ -625,27 +608,15 @@ P4 — Business Analysis
 - [x] Re-run monthly analysis
 - [x] Re-run country analysis
 - [x] Update analysis notes
-- [ ] Complete product performance analysis
-
-#### Issues
-
-The original cleaning method removed cancellation invoices while retaining
-their original positive sales transactions, causing revenue overstatement.
-
-The methodology was revised to retain valid cancellation transactions as
-negative revenue.
-
-#### Definition of Done
-
-Cancellation methodology is corrected and documented, BQ1 and BQ2 are
-re-validated, and BQ3 can continue using the revised analytical dataset.
+- [x] Complete product performance analysis
 
 #### Result
 
 - Cancellation QA correction: Complete
 - BQ1 re-validation: Complete
 - BQ2 re-validation: Complete
-- Next work package: BQ3 — Product Performance
+- BQ3 Product Performance: Complete
+- Next work package: BQ4 — Customer Performance
 
 ---
 

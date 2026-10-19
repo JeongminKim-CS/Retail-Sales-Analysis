@@ -139,17 +139,49 @@ The United Kingdom also had by far the highest number of orders and
 active customers, indicating that its strong revenue performance was
 supported by broad transaction and customer activity.
 
+## 6. Product Performance
 
-## 6. Next Analysis — Product Performance
+Product performance was evaluated using StockCode as the product
+identifier.
 
-The next analysis will evaluate sales performance by product.
+StockCode values were normalized to uppercase, and non-product
+transaction codes such as postage, manual entries, discounts,
+bank charges, commissions, samples, and gift vouchers were excluded
+from product rankings.
+
+When multiple descriptions existed for the same StockCode, the most
+frequently occurring description was used as the representative product
+name.
+
+REGENCY CAKESTAND 3 TIER generated the highest net revenue at
+approximately 164,459.
+
+POPCORN HOLDER generated the highest net sales volume with 56,427 units.
+
+Five products appeared in both the top 10 by net revenue and the top 10
+by net quantity, indicating strong performance across both revenue and
+sales volume.
+
+Revenue and quantity rankings differed substantially for several products.
+For example, REGENCY CAKESTAND 3 TIER ranked 1st in net revenue but 44th
+in net quantity, while WORLD WAR 2 GLIDERS ASSTD DESIGNS ranked 2nd in
+net quantity but 142nd in net revenue.
+
+This indicates that product performance should be evaluated using both
+revenue and sales volume rather than either metric alone.
+
+## 7. Next Analysis — Customer Performance
+
+The next analysis will evaluate customer-level revenue contribution.
 
 The analysis will examine:
 
-- Net revenue by product
-- Net quantity sold by product
-- Top products by net revenue
-- Top products by net sales volume
+- Net revenue by customer
+- Highest-value customers
+- Revenue concentration among top customers
 
-The objective is to identify the products contributing most strongly
-to sales performance after accounting for cancellations.
+Customer-level analysis will include only transactions with valid
+CustomerID values.
+
+The objective is to determine how strongly revenue is concentrated among
+a relatively small number of customers.
