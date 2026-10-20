@@ -316,7 +316,7 @@ The project will produce the following deliverables.
 
 ### P3 — Core KPI Analysis
 
-- P3-01 Calculate Total Revenue
+- P3-01 Calculate Net Revenue
 - P3-02 Calculate Total Orders
 - P3-03 Calculate Active Customers
 - P3-04 Calculate Average Order Value
@@ -435,7 +435,7 @@ The project will produce the following deliverables.
 
 Current focus:
 
-**P7-06 — Review Documentation**
+**P7-07 — Review Spelling and Formatting**
 
 Completed:
 
@@ -454,6 +454,7 @@ Completed:
 - P7-03 — R and SQL Result Comparison
 - P7-04 — Project File Path Validation
 - P7-05 — Figure Verification
+- P7-06 — Documentation Review
 
 ### BQ4 Completion Summary
 
@@ -649,7 +650,8 @@ P7 — Quality Assurance and Project Close
 - [x] Compare R and SQL results
 - [x] Check project file paths
 - [x] Verify figures
-- [ ] Review documentation
+- [x] Review documentation
+- [ ] Review spelling and formatting
 
 #### Result
 
@@ -665,7 +667,11 @@ P7 — Quality Assurance and Project Close
 - All four PNG figures were verified as valid image files
 - Figure dimensions and visual presentation were reviewed
 - No clipping, overlapping labels, or major presentation issues were identified
-- Current work package: P7-06 — Review Documentation
+- P7-06 — Documentation Review: Complete
+- README, analysis notes, final report, and project plan were reviewed for consistency
+- Outdated KPI terminology and values were checked and corrected
+- Net Revenue and active-customer terminology were standardized across documents
+- Current work package: P7-07 — Review Spelling and Formatting
 
 ---
 

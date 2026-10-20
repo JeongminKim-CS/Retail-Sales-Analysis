@@ -179,8 +179,8 @@ revenue.
 
 A total of 4,338 active customers were identified.
 
-The top 10 customers generated approximately 16.5% of net revenue
-attributable to active customers.
+The top 10 customers generated approximately 16.5% of active-customer
+net revenue.
 
 The top 1% of active customers, representing 44 customers, generated
 approximately 30.0% of active-customer net revenue.
