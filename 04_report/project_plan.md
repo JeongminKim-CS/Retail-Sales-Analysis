@@ -435,7 +435,7 @@ The project will produce the following deliverables.
 
 Current focus:
 
-**P7-01 — Run R Analysis from a Fresh Session**
+**P7-02 — Validate MySQL Queries**
 
 Completed:
 
@@ -449,6 +449,7 @@ Completed:
 - P6-03 — README
 - P6-04 — Final Report
 - P6-05 — Analytical Limitations
+- P7-01 — Fresh-Session R Validation
 
 ### BQ4 Completion Summary
 
@@ -627,6 +628,7 @@ P7 — Quality Assurance and Project Close
 - P6-04 — Final Report
 - P6-05 — Analytical Limitations
 - P7-01 — Fresh-Session R Validation
+- P7-02 — MySQL Query Validation
 
 #### Tasks
 
@@ -634,7 +636,8 @@ P7 — Quality Assurance and Project Close
 - [x] Validate README formatting and visualizations
 - [x] Write final analytical report
 - [x] Document analytical limitations
-- [ ] Run R analysis from a fresh session
+- [x] Run R analysis from a fresh session
+- [ ] Validate MySQL queries
 
 #### Result
 
@@ -642,7 +645,10 @@ P7 — Quality Assurance and Project Close
 - P6-04 — Final Report: Complete
 - P6-05 — Analytical Limitations: Complete
 - P6 — Documentation: Complete
-- Current work package: P7-01 — Run R Analysis from a Fresh Session
+- P7-01 — Fresh-Session R Validation: Complete
+- All five R scripts ran successfully from a clean session
+- Core KPIs and BQ1–BQ4 validation results matched expected values
+- Current work package: P7-02 — Validate MySQL Queries
 
 ---
 
