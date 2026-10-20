@@ -308,7 +308,7 @@ The project will produce the following deliverables.
 - P2-04 Exclude non-cancellation negative or zero quantities
 - P2-05 Exclude non-positive prices
 - P2-06 Exclude accounting adjustment records
-- P2-07 Calculate net Revenue
+- P2-07 Calculate Net Revenue
 - P2-08 Validate cleaned data
 - P2-09 Save cleaned dataset
 
@@ -435,7 +435,7 @@ The project will produce the following deliverables.
 
 Current focus:
 
-**P7-07 — Review Spelling and Formatting**
+**P7-08 — Finalize GitHub Repository**
 
 Completed:
 
@@ -455,6 +455,7 @@ Completed:
 - P7-04 — Project File Path Validation
 - P7-05 — Figure Verification
 - P7-06 — Documentation Review
+- P7-07 — Spelling and Formatting Review
 
 ### BQ4 Completion Summary
 
@@ -638,6 +639,7 @@ P7 — Quality Assurance and Project Close
 - P7-04 — Project File Path Validation
 - P7-05 — Figure Verification
 - P7-06 — Documentation Review
+- P7-07 — Spelling and Formatting Review
 
 #### Tasks
 
@@ -651,7 +653,8 @@ P7 — Quality Assurance and Project Close
 - [x] Check project file paths
 - [x] Verify figures
 - [x] Review documentation
-- [ ] Review spelling and formatting
+- [x] Review spelling and formatting
+- [ ] Finalize GitHub repository
 
 #### Result
 
@@ -671,7 +674,12 @@ P7 — Quality Assurance and Project Close
 - README, analysis notes, final report, and project plan were reviewed for consistency
 - Outdated KPI terminology and values were checked and corrected
 - Net Revenue and active-customer terminology were standardized across documents
-- Current work package: P7-07 — Review Spelling and Formatting
+- P7-07 — Spelling and Formatting Review: Complete
+- Markdown formatting and trailing whitespace were reviewed
+- Intentional Markdown line breaks were retained
+- Common spelling and naming inconsistencies were checked
+- No major spelling or formatting issues were identified
+- Current work package: P7-08 — Finalize GitHub Repository
 
 ---
 
