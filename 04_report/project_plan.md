@@ -435,7 +435,7 @@ The project will produce the following deliverables.
 
 Current focus:
 
-**P7-04 — Check Project File Paths**
+**P7-05 — Verify Figures**
 
 Completed:
 
@@ -452,6 +452,7 @@ Completed:
 - P7-01 — Fresh-Session R Validation
 - P7-02 — MySQL Query Validation
 - P7-03 — R and SQL Result Comparison
+- P7-04 — Project File Path Validation
 
 ### BQ4 Completion Summary
 
@@ -633,6 +634,7 @@ P7 — Quality Assurance and Project Close
 - P7-02 — MySQL Query Validation
 - P7-03 — R and SQL Result Comparison
 - P7-04 — Project File Path Validation
+- P7-05 — Figure Verification
 
 #### Tasks
 
@@ -643,7 +645,8 @@ P7 — Quality Assurance and Project Close
 - [x] Run R analysis from a fresh session
 - [x] Validate MySQL queries
 - [x] Compare R and SQL results
-- [ ] Check project file paths
+- [x] Check project file paths
+- [ ] Verify figures
 
 #### Result
 
@@ -652,8 +655,10 @@ P7 — Quality Assurance and Project Close
 - Database import reproduced 534,128 cleaned rows
 - Core KPIs and BQ1–BQ4 SQL results matched expected values
 - P7-03 — R and SQL Result Comparison: Complete
-- Fresh-session R and MySQL results were consistent across all validated analyses
-- Current work package: P7-04 — Check Project File Paths
+- P7-04 — Project File Path Validation: Complete
+- No user-specific absolute paths were found in R, SQL, README, or report files
+- All required input, output, figure, and report paths were verified
+- Current work package: P7-05 — Verify Figures
 
 ---
 
