@@ -426,16 +426,16 @@ The project will produce the following deliverables.
 | P3 — Core KPI Analysis | Complete |
 | P4 — Business Analysis | Complete |
 | P5 — MySQL Analysis | Complete |
-| P6 — Documentation | In Progress |
-| P7 — Quality Assurance | Not Started |
+| P6 — Documentation | Complete |
+| P7 — Quality Assurance | In Progress |
 
 ### Current Work Package
 
-**P6 — Documentation**
+**P7 — Quality Assurance and Project Close**
 
 Current focus:
 
-**P6-04 — Final Report**
+**P7-01 — Run R Analysis from a Fresh Session**
 
 Completed:
 
@@ -447,6 +447,8 @@ Completed:
 - Cancellation methodology QA and correction
 - R and MySQL cross-validation
 - P6-03 — README
+- P6-04 — Final Report
+- P6-05 — Analytical Limitations
 
 ### BQ4 Completion Summary
 
@@ -617,23 +619,30 @@ This information will be used to improve future project estimates.
 
 #### Current Phase
 
-P6 — Documentation
+P7 — Quality Assurance and Project Close
 
 #### Work Packages
 
 - P6-03 — README
 - P6-04 — Final Report
+- P6-05 — Analytical Limitations
+- P7-01 — Fresh-Session R Validation
 
 #### Tasks
 
 - [x] Complete README
 - [x] Validate README formatting and visualizations
-- [ ] Write final analytical report
+- [x] Write final analytical report
+- [x] Document analytical limitations
+- [ ] Run R analysis from a fresh session
 
 #### Result
 
 - P6-03 — README: Complete
-- Current work package: P6-04 — Final Report
+- P6-04 — Final Report: Complete
+- P6-05 — Analytical Limitations: Complete
+- P6 — Documentation: Complete
+- Current work package: P7-01 — Run R Analysis from a Fresh Session
 
 ---
 
@@ -647,8 +656,8 @@ P6 — Documentation
 | P3 — Core KPI Analysis | 2–3 hours | Complete |
 | P4 — Business Analysis | 7–9 hours | Complete |
 | P5 — MySQL Analysis | 6–8 hours | Complete |
-| P6 — Documentation | 4–6 hours | In Progress |
-| P7 — QA and Project Close | 3–4 hours | Not Started |
+| P6 — Documentation | 4–6 hours | Complete |
+| P7 — QA and Project Close | 3–4 hours | In Progress |
 
 ### Major Milestones
 
@@ -658,7 +667,7 @@ P6 — Documentation
 | M2 | Core KPI analysis complete | Complete |
 | M3 | Business analysis complete | Complete |
 | M4 | MySQL validation complete | Complete |
-| M5 | Documentation complete | In Progress |
+| M5 | Documentation complete | Complete |
 | M6 | Portfolio project released | Not Started |
 
 ---
