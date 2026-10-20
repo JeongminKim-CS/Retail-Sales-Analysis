@@ -98,7 +98,7 @@ net-revenue basis.
 
 - Net Revenue: 9,737,069
 - Sales Orders: 19,959
-- Unique Customers: 4,338
+- Active Customers: 4,338
 - Average Order Value: 487.85
 
 Revenue includes valid cancellation transactions as negative revenue.
@@ -202,11 +202,160 @@ transactions and had no non-cancellation sales orders. These customers
 were excluded from the active-customer population used for revenue
 concentration analysis.
 
-## 8. Next Analysis — Final Business Insights
+## 8. Final Business Insights
 
-The next analysis will consolidate findings from monthly, country,
-product, and customer performance analyses.
+### Insight 1 — Late-Year Revenue Growth Was Driven by Order Volume
 
-The objective is to identify three to five key business insights,
-document major analytical limitations, and prepare the final business
-summary.
+**Finding**
+
+Net revenue increased substantially from September to November 2011.
+
+**Evidence**
+
+- Net revenue increased by approximately 43.1%.
+- Sales orders increased by approximately 50.7%.
+- Active customers increased by approximately 31.4%.
+- Average order value decreased by approximately 5.1%.
+
+**Business Interpretation**
+
+The increase in net revenue was driven primarily by higher order volume
+and increased customer activity rather than by higher revenue per order.
+
+This suggests that late-year growth was associated with more purchasing
+activity across the customer base rather than customers spending more on
+each individual order.
+
+
+### Insight 2 — Revenue Was Highly Concentrated in the UK Market
+
+**Finding**
+
+The United Kingdom generated the majority of net revenue.
+
+**Evidence**
+
+- The United Kingdom accounted for approximately 84.0% of total net
+  revenue.
+- The top five countries together accounted for approximately 93.9% of
+  total net revenue.
+
+**Business Interpretation**
+
+The business was highly concentrated in the UK market, while
+international markets contributed a relatively small share of total
+revenue.
+
+This concentration indicates that overall business performance was
+strongly influenced by the UK market.
+
+
+### Insight 3 — Revenue and Sales Volume Identified Different Leading Products
+
+**Finding**
+
+Products with the highest net revenue were not necessarily the products
+with the highest sales volume.
+
+**Evidence**
+
+- REGENCY CAKESTAND 3 TIER ranked first in net revenue at approximately
+  164,459.
+- POPCORN HOLDER ranked first in net quantity with 56,427 units.
+- Only five products appeared in both the top 10 by net revenue and the
+  top 10 by net quantity.
+
+**Business Interpretation**
+
+Product performance should be evaluated using both revenue and sales
+volume.
+
+High-volume products do not necessarily generate the greatest revenue,
+while some products can make a strong revenue contribution without
+ranking among the highest-volume items.
+
+
+### Insight 4 — Revenue Was Concentrated Among a Small Group of Customers
+
+**Finding**
+
+A relatively small group of active customers generated a substantial
+share of active-customer net revenue.
+
+**Evidence**
+
+- 4,338 active customers were identified.
+- The top 10 customers generated approximately 16.5% of active-customer
+  net revenue.
+- The top 1% of active customers, representing 44 customers, generated
+  approximately 30.0% of active-customer net revenue.
+
+**Business Interpretation**
+
+High-value customers made a disproportionately large contribution to
+revenue.
+
+Understanding the purchasing behavior of these customers and maintaining
+their relationship with the business may therefore be particularly
+important.
+
+
+## 9. Analytical Limitations
+
+The analysis has several limitations that should be considered when
+interpreting the results.
+
+- December 2011 contains only partial-month data and should not be
+  compared directly with complete months.
+
+- Transactions with valid CustomerID values accounted for approximately
+  85% of total net revenue. Customer-level analysis therefore does not
+  represent all transactions.
+
+- Thirty-three CustomerID values appeared only in cancellation
+  transactions and were excluded from the active-customer population
+  used for customer revenue concentration analysis.
+
+- The dataset does not explicitly confirm the transaction currency.
+  Revenue is therefore reported without assigning a currency symbol.
+
+- The analysis is descriptive and diagnostic. It identifies patterns and
+  relationships in the observed data but does not establish causal
+  relationships.
+
+## 10. R and MySQL Validation
+
+Key analytical results were independently reproduced in MySQL using the
+cleaned dataset generated in R.
+
+| Metric | R | MySQL | Result |
+|---|---:|---:|---|
+| Net Revenue | 9,737,069.014 | 9,737,069.014 | Match |
+| Sales Orders | 19,959 | 19,959 | Match |
+| Active Customers | 4,338 | 4,338 | Match |
+| AOV | 487.85 | 487.85 | Match |
+| Sep-Nov Revenue Change | 43.1% | 43.1% | Match |
+| Sep-Nov Orders Change | 50.7% | 50.7% | Match |
+| Sep-Nov Customer Change | 31.4% | 31.4% | Match |
+| Sep-Nov AOV Change | -5.1% | -5.1% | Match |
+| UK Revenue Share | 84.0% | 84.0% | Match |
+| Top Five Country Share | 93.9% | 93.9% | Match |
+| Top Revenue Product | 22423 | 22423 | Match |
+| Top Quantity Product | 22197 | 22197 | Match |
+| Product Top-10 Overlap | 5 | 5 | Match |
+| Top 10 Customer Share | 16.5% | 16.5% | Match |
+| Top 1% Customer Share | 30.0% | 30.0% | Match |
+
+During customer-level validation, a small difference was initially found
+in the classification of zero and negative customer net revenue.
+
+R uses floating-point numeric values, which produced several values
+extremely close to zero, such as -5.68e-14. MySQL stored revenue using
+DECIMAL values and classified these balances as zero.
+
+The R QA logic was updated to use `dplyr::near()` when testing for zero
+net revenue. After this adjustment, the customer-level QA results also
+matched between R and MySQL.
+
+The cross-validation confirmed that the main analytical results were
+consistent across both tools.

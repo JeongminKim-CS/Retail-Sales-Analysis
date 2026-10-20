@@ -41,12 +41,12 @@ customer_sales <-
   ) %>%
   dplyr::summarise(
     Net_Revenue = sum(Revenue),
-    
+
     Sales_Orders =
       dplyr::n_distinct(
         InvoiceNo[!IsCancellation]
       ),
-    
+
     .groups = "drop"
   )
 
@@ -54,21 +54,31 @@ customer_sales <-
 # 3. Customer-Level QA
 # ============================================================
 
+# Use near() to avoid classifying floating-point values
+# extremely close to zero as positive or negative revenue.
+
 customer_sales %>%
   dplyr::summarise(
     Customers =
       dplyr::n(),
-    
+
     Negative_Net_Revenue =
       sum(
-        Net_Revenue < 0
+        Net_Revenue < 0 &
+          !dplyr::near(
+            Net_Revenue,
+            0
+          )
       ),
-    
+
     Zero_Net_Revenue =
       sum(
-        Net_Revenue == 0
+        dplyr::near(
+          Net_Revenue,
+          0
+        )
       ),
-    
+
     Zero_Sales_Orders =
       sum(
         Sales_Orders == 0
@@ -270,3 +280,31 @@ top_1_pct_n
 top_1_pct_customer_share
 identified_customer_coverage
 active_customer_coverage
+
+customer_sales %>%
+  dplyr::summarise(
+    Customers =
+      dplyr::n(),
+
+    Negative_Net_Revenue =
+      sum(
+        Net_Revenue < 0 &
+          !dplyr::near(
+            Net_Revenue,
+            0
+          )
+      ),
+
+    Zero_Net_Revenue =
+      sum(
+        dplyr::near(
+          Net_Revenue,
+          0
+        )
+      ),
+
+    Zero_Sales_Orders =
+      sum(
+        Sales_Orders == 0
+      )
+  )

@@ -13,6 +13,10 @@ USE retail_sales_analysis;
 -- mysql --local-infile=1 -u root -p retail_sales_analysis
 
 
+-- Clear existing rows before re-importing the cleaned dataset
+TRUNCATE TABLE retail_sales;
+
+
 LOAD DATA LOCAL INFILE
 '01_data/02_processed/sales_clean.csv'
 INTO TABLE retail_sales
@@ -29,6 +33,7 @@ IGNORE 1 LINES
   UnitPrice,
   @CustomerID,
   Country,
+  @IsCancellation,
   @RevenueRaw
 )
 SET
@@ -36,14 +41,48 @@ SET
     @InvoiceDate,
     '%Y-%m-%dT%H:%i:%sZ'
   ),
+
   CustomerID = CASE
     WHEN @CustomerID IN ('', 'NA') THEN NULL
     ELSE @CustomerID
   END,
-  Revenue = ROUND(
-    Quantity * UnitPrice,
-    3
+
+  IsCancellation = CASE
+    WHEN UPPER(TRIM(@IsCancellation)) = 'TRUE' THEN 1
+    WHEN UPPER(TRIM(@IsCancellation)) = 'FALSE' THEN 0
+    ELSE NULL
+  END,
+
+  Revenue = CAST(
+    NULLIF(
+      @RevenueRaw,
+      ''
+    ) AS DECIMAL(15, 3)
   );
-  
+
+
+-- ============================================================
+-- Import Validation
+-- ============================================================
+
+SELECT
+  COUNT(*) AS Total_Rows
+FROM retail_sales;
+
+SELECT
+  IsCancellation,
+  COUNT(*) AS Rows_Count
+FROM retail_sales
+GROUP BY IsCancellation
+ORDER BY IsCancellation;
+
+SELECT
+  ROUND(
+    SUM(Revenue),
+    3
+  ) AS Net_Revenue
+FROM retail_sales;
+
+
 -- After the import is complete, disable local_infile:
 -- SET GLOBAL local_infile = OFF;

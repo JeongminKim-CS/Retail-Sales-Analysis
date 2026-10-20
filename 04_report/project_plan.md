@@ -318,7 +318,7 @@ The project will produce the following deliverables.
 
 - P3-01 Calculate Total Revenue
 - P3-02 Calculate Total Orders
-- P3-03 Calculate Unique Customers
+- P3-03 Calculate Active Customers
 - P3-04 Calculate Average Order Value
 - P3-05 Document KPI definitions
 
@@ -425,7 +425,7 @@ The project will produce the following deliverables.
 | P2 — Data Cleaning | Complete |
 | P3 — Core KPI Analysis | Complete |
 | P4 — Business Analysis | In Progress |
-| P5 — MySQL Analysis | In Progress |
+| P5 — MySQL Analysis | Complete |
 | P6 — Documentation | In Progress |
 | P7 — Quality Assurance | Not Started |
 
@@ -479,24 +479,30 @@ Key findings:
 - P5-01 Install and configure MySQL — Complete
 - P5-02 Create project database — Complete
 - P5-03 Create retail sales table — Complete
-- P5-04 Import cleaned dataset — Re-run required
-- P5-05 Reproduce overall KPIs — Re-validation required
-- P5-06 Reproduce monthly analysis — Re-validation required
-- P5-07 Reproduce country analysis — Not Started
-- P5-08 Reproduce product analysis — Not Started
-- P5-09 Reproduce customer analysis — Not Started
-- P5-10 SQL techniques — In Progress
-- P5-11 Compare MySQL results with R results — Not Started
+- P5-04 Import cleaned dataset — Complete
+- P5-05 Reproduce overall KPIs — Complete
+- P5-06 Reproduce monthly analysis — Complete
+- P5-07 Reproduce country analysis — Complete
+- P5-08 Reproduce product analysis — Complete
+- P5-09 Reproduce customer analysis — Complete
+- P5-10 SQL techniques — Complete
+- P5-11 Compare MySQL results with R results — Complete
 
 Note:
 
-The cleaned dataset was revised during QA after identifying both an
-accounting adjustment record ("Adjust bad debt") and an issue with the
-initial cancellation-handling methodology.
+The MySQL dataset and table schema were refreshed after the cleaned
+dataset was revised to include `IsCancellation`.
 
-The processed dataset now includes `IsCancellation`. The MySQL dataset,
-table schema, import script, and previously calculated KPI/monthly results
-must therefore be refreshed and re-validated before SQL analysis continues.
+Overall KPIs, monthly performance, country performance, product
+performance, and customer performance were reproduced and validated
+against the R results.
+
+During customer-level validation, a floating-point precision issue was
+identified in R for net revenue values extremely close to zero. The R QA
+logic was updated to use `dplyr::near()` for zero-value classification,
+after which the customer-level QA results matched MySQL.
+
+The main analytical results are now consistent across R and MySQL.
 
 ---
 
@@ -602,6 +608,7 @@ BQ5 - Final Business Insights
 - BQ2 — Country Performance Re-validation
 - BQ3 — Product Performance
 - BQ4 — Customer Performance
+- P5 — MySQL Analysis and R/SQL Validation
 
 #### Tasks
 
@@ -613,6 +620,14 @@ BQ5 - Final Business Insights
 - [x] Update analysis notes
 - [x] Complete product performance analysis
 - [x] Complete customer performance analysis
+- [x] Refresh MySQL table schema and cleaned dataset
+- [x] Reproduce overall KPIs in MySQL
+- [x] Reproduce monthly analysis in MySQL
+- [x] Reproduce country analysis in MySQL
+- [x] Reproduce product analysis in MySQL
+- [x] Reproduce customer analysis in MySQL
+- [x] Validate R and MySQL results
+- [x] Resolve floating-point QA discrepancy
 
 #### Result
 
@@ -621,6 +636,8 @@ BQ5 - Final Business Insights
 - BQ2 re-validation: Complete
 - BQ3 Product Performance: Complete
 - BQ4 — Customer Performance : Complete
+- P5 — MySQL Analysis: Complete
+- R and MySQL validation: Complete
 - Next work package: BQ5 - Final Business Insights
 
 ---
@@ -634,7 +651,7 @@ BQ5 - Final Business Insights
 | P2 — Data Cleaning | 3–4 hours | Complete |
 | P3 — Core KPI Analysis | 2–3 hours | Complete |
 | P4 — Business Analysis | 7–9 hours | In Progress |
-| P5 — MySQL Analysis | 6–8 hours | In Progress |
+| P5 — MySQL Analysis | 6–8 hours | Complete |
 | P6 — Documentation | 4–6 hours | In Progress |
 | P7 — QA and Project Close | 3–4 hours | Not Started |
 
@@ -645,7 +662,7 @@ BQ5 - Final Business Insights
 | M1 | Clean analytical dataset complete | Complete |
 | M2 | Core KPI analysis complete | Complete |
 | M3 | Business analysis complete | In Progress |
-| M4 | MySQL validation complete | Not Started |
+| M4 | MySQL validation complete | Complete |
 | M5 | Documentation complete | In Progress |
 | M6 | Portfolio project released | Not Started |
 
