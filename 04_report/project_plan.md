@@ -435,7 +435,7 @@ The project will produce the following deliverables.
 
 Current focus:
 
-**P7-02 — Validate MySQL Queries**
+**P7-04 — Check Project File Paths**
 
 Completed:
 
@@ -450,6 +450,8 @@ Completed:
 - P6-04 — Final Report
 - P6-05 — Analytical Limitations
 - P7-01 — Fresh-Session R Validation
+- P7-02 — MySQL Query Validation
+- P7-03 — R and SQL Result Comparison
 
 ### BQ4 Completion Summary
 
@@ -629,6 +631,8 @@ P7 — Quality Assurance and Project Close
 - P6-05 — Analytical Limitations
 - P7-01 — Fresh-Session R Validation
 - P7-02 — MySQL Query Validation
+- P7-03 — R and SQL Result Comparison
+- P7-04 — Project File Path Validation
 
 #### Tasks
 
@@ -637,18 +641,19 @@ P7 — Quality Assurance and Project Close
 - [x] Write final analytical report
 - [x] Document analytical limitations
 - [x] Run R analysis from a fresh session
-- [ ] Validate MySQL queries
+- [x] Validate MySQL queries
+- [x] Compare R and SQL results
+- [ ] Check project file paths
 
 #### Result
 
-- P6-03 — README: Complete
-- P6-04 — Final Report: Complete
-- P6-05 — Analytical Limitations: Complete
-- P6 — Documentation: Complete
-- P7-01 — Fresh-Session R Validation: Complete
-- All five R scripts ran successfully from a clean session
-- Core KPIs and BQ1–BQ4 validation results matched expected values
-- Current work package: P7-02 — Validate MySQL Queries
+- P7-02 — MySQL Query Validation: Complete
+- All seven SQL scripts ran successfully from a fresh MySQL session
+- Database import reproduced 534,128 cleaned rows
+- Core KPIs and BQ1–BQ4 SQL results matched expected values
+- P7-03 — R and SQL Result Comparison: Complete
+- Fresh-session R and MySQL results were consistent across all validated analyses
+- Current work package: P7-04 — Check Project File Paths
 
 ---
 
