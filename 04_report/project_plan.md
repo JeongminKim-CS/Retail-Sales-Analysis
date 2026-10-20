@@ -424,18 +424,18 @@ The project will produce the following deliverables.
 | P1 — Data Audit | Complete |
 | P2 — Data Cleaning | Complete |
 | P3 — Core KPI Analysis | Complete |
-| P4 — Business Analysis | In Progress |
+| P4 — Business Analysis | Complete |
 | P5 — MySQL Analysis | Complete |
 | P6 — Documentation | In Progress |
 | P7 — Quality Assurance | Not Started |
 
 ### Current Work Package
 
-**P4 — Business Analysis**
+**P6 — Documentation**
 
 Current focus:
 
-**BQ5 — Final Business Insights**
+**P6-04 — Final Report**
 
 Completed:
 
@@ -443,8 +443,10 @@ Completed:
 - BQ2 — Country Performance
 - BQ3 — Product Performance
 - BQ4 — Customer Performance
+- BQ5 — Final Business Insights
 - Cancellation methodology QA and correction
-- BQ1 and BQ2 re-validation using net revenue
+- R and MySQL cross-validation
+- P6-03 — README
 
 ### BQ4 Completion Summary
 
@@ -466,13 +468,29 @@ Key findings:
 - Thirty-three CustomerID values appeared only in cancellation
   transactions and were excluded from the active-customer population.
 
-### Current BQ5 Tasks
+### BQ5 Completion Summary
 
-- Review findings from BQ1–BQ4
-- Select three to five key business insights
-- Develop business interpretation
-- Identify major analytical limitations
-- Prepare the final business summary
+Final business insights were consolidated from the completed monthly,
+country, product, and customer analyses.
+
+Key findings:
+
+- Late-year revenue growth was driven primarily by increased order
+  volume and customer activity rather than higher average order value.
+- Revenue was highly concentrated in the United Kingdom, which generated
+  approximately 84.0% of total net revenue.
+- Product rankings differed substantially between net revenue and net
+  quantity, indicating that both metrics are needed to evaluate product
+  performance.
+- Revenue was concentrated among a relatively small group of customers,
+  with the top 1% of active customers generating approximately 30.0% of
+  active-customer net revenue.
+
+Major analytical limitations were documented, including partial
+December 2011 data, missing CustomerID values, unconfirmed transaction
+currency, and the descriptive nature of the analysis.
+
+BQ5 — Final Business Insights is complete.
 
 ### MySQL Progress Status
 
@@ -595,50 +613,27 @@ This information will be used to improve future project estimates.
 
 #### Date
 
-2026-10-19
+2026-10-20
 
 #### Current Phase
 
-BQ5 - Final Business Insights
+P6 — Documentation
 
 #### Work Packages
 
-- P2 — Data Cleaning QA
-- BQ1 — Monthly Performance Re-validation
-- BQ2 — Country Performance Re-validation
-- BQ3 — Product Performance
-- BQ4 — Customer Performance
-- P5 — MySQL Analysis and R/SQL Validation
+- P6-03 — README
+- P6-04 — Final Report
 
 #### Tasks
 
-- [x] Identify cancellation-handling issue during product QA
-- [x] Revise cancellation cleaning methodology
-- [x] Recalculate overall KPIs using net revenue
-- [x] Re-run monthly analysis
-- [x] Re-run country analysis
-- [x] Update analysis notes
-- [x] Complete product performance analysis
-- [x] Complete customer performance analysis
-- [x] Refresh MySQL table schema and cleaned dataset
-- [x] Reproduce overall KPIs in MySQL
-- [x] Reproduce monthly analysis in MySQL
-- [x] Reproduce country analysis in MySQL
-- [x] Reproduce product analysis in MySQL
-- [x] Reproduce customer analysis in MySQL
-- [x] Validate R and MySQL results
-- [x] Resolve floating-point QA discrepancy
+- [x] Complete README
+- [x] Validate README formatting and visualizations
+- [ ] Write final analytical report
 
 #### Result
 
-- Cancellation QA correction: Complete
-- BQ1 re-validation: Complete
-- BQ2 re-validation: Complete
-- BQ3 Product Performance: Complete
-- BQ4 — Customer Performance : Complete
-- P5 — MySQL Analysis: Complete
-- R and MySQL validation: Complete
-- Next work package: BQ5 - Final Business Insights
+- P6-03 — README: Complete
+- Current work package: P6-04 — Final Report
 
 ---
 
@@ -650,7 +645,7 @@ BQ5 - Final Business Insights
 | P1 — Data Audit | 3–4 hours | Complete |
 | P2 — Data Cleaning | 3–4 hours | Complete |
 | P3 — Core KPI Analysis | 2–3 hours | Complete |
-| P4 — Business Analysis | 7–9 hours | In Progress |
+| P4 — Business Analysis | 7–9 hours | Complete |
 | P5 — MySQL Analysis | 6–8 hours | Complete |
 | P6 — Documentation | 4–6 hours | In Progress |
 | P7 — QA and Project Close | 3–4 hours | Not Started |
@@ -661,7 +656,7 @@ BQ5 - Final Business Insights
 |---|---|---|
 | M1 | Clean analytical dataset complete | Complete |
 | M2 | Core KPI analysis complete | Complete |
-| M3 | Business analysis complete | In Progress |
+| M3 | Business analysis complete | Complete |
 | M4 | MySQL validation complete | Complete |
 | M5 | Documentation complete | In Progress |
 | M6 | Portfolio project released | Not Started |

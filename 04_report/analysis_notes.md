@@ -93,7 +93,6 @@ After cleaning:
 As a result, all revenue metrics in this project are now reported on a
 net-revenue basis.
 
-
 ## 3. Overall KPIs
 
 - Net Revenue: 9,737,069
@@ -109,7 +108,6 @@ transactions.
 Average Order Value is calculated as net revenue divided by the number
 of non-cancellation sales orders.
 
-
 ## 4. Monthly Performance Analysis
 
 From September to November 2011:
@@ -124,7 +122,6 @@ volume and increased customer activity rather than higher revenue per order.
 
 December 2011 is a partial month and should not be directly compared with
 full months.
-
 
 ## 5. Country Performance
 
@@ -204,7 +201,8 @@ concentration analysis.
 
 ## 8. Final Business Insights
 
-### Insight 1 — Late-Year Revenue Growth Was Driven by Order Volume
+### Insight 1 — Late-Year Revenue Growth Was Driven by Order Volume and
+Customer Activity
 
 **Finding**
 
@@ -225,7 +223,6 @@ and increased customer activity rather than by higher revenue per order.
 This suggests that late-year growth was associated with more purchasing
 activity across the customer base rather than customers spending more on
 each individual order.
-
 
 ### Insight 2 — Revenue Was Highly Concentrated in the UK Market
 
@@ -274,7 +271,6 @@ High-volume products do not necessarily generate the greatest revenue,
 while some products can make a strong revenue contribution without
 ranking among the highest-volume items.
 
-
 ### Insight 4 — Revenue Was Concentrated Among a Small Group of Customers
 
 **Finding**
@@ -298,7 +294,6 @@ revenue.
 Understanding the purchasing behavior of these customers and maintaining
 their relationship with the business may therefore be particularly
 important.
-
 
 ## 9. Analytical Limitations
 
