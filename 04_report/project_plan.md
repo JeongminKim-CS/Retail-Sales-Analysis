@@ -435,7 +435,7 @@ The project will produce the following deliverables.
 
 Current focus:
 
-**P7-09 Complete project retrospective**
+**P7-10 — Close Project**
 
 Completed:
 
@@ -642,6 +642,7 @@ P7 — Quality Assurance and Project Close
 - P7-06 — Documentation Review
 - P7-07 — Spelling and Formatting Review
 - P7-08 — Finalize GitHub Repository
+- P7-09 — Complete Project Retrospective
 
 #### Tasks
 
@@ -657,6 +658,7 @@ P7 — Quality Assurance and Project Close
 - [x] Review documentation
 - [x] Review spelling and formatting
 - [x] Finalize GitHub repository
+- [x] Complete project retrospective
 
 #### Result
 
@@ -686,7 +688,11 @@ P7 — Quality Assurance and Project Close
 - Raw and processed datasets were confirmed to be excluded by `.gitignore`
 - README, final report, and analysis notes passed final QA
 - GitHub repository was pushed and verified successfully
-- Current work package: P7-09 — Complete Project Retrospective
+- P7-09 — Complete Project Retrospective: Complete
+- Project retrospective documented lessons from data cleaning, validation,
+  documentation, and project management
+- Improvement areas for Portfolio Project #2 were identified
+- Current work package: P7-10 — Close Project
 
 ---
 
@@ -736,14 +742,85 @@ P7 — Quality Assurance and Project Close
 
 ## 13. Project Retrospective
 
-At project completion, a retrospective will evaluate:
+### 13.1 Estimated vs. Actual Project Duration
 
-- Estimated vs. actual project duration
-- Tasks that required more time than expected
-- Technical challenges encountered
-- Analytical decisions that worked well
-- Areas for improvement
-- Lessons to apply to Portfolio Project #2
+The project plan included estimated effort for each major phase, but actual
+working time was not recorded consistently enough to make a reliable
+estimated-versus-actual comparison.
+
+For future projects, actual working time should be recorded at the end of
+each major work package so that planning accuracy can be evaluated more
+objectively.
+
+### 13.2 Tasks That Required More Work Than Expected
+
+Data cleaning and quality assurance required more iteration than originally
+anticipated.
+
+The most important example was cancellation handling. The initial cleaning
+method removed cancellation transactions while retaining the corresponding
+positive sales, which overstated revenue. Product-level QA exposed this
+issue, and the methodology was revised so that valid cancellations were
+retained as negative revenue.
+
+MySQL validation also required additional setup and troubleshooting,
+including local file loading configuration and customer-level validation
+between R floating-point values and MySQL DECIMAL values.
+
+### 13.3 Technical and Analytical Challenges
+
+The main challenges encountered during the project were:
+
+- Defining a correct methodology for cancellation transactions.
+- Distinguishing customer sales from inventory and accounting adjustments.
+- Maintaining consistent KPI definitions across R, SQL, and documentation.
+- Handling floating-point values close to zero during R and MySQL validation.
+- Configuring MySQL local file loading for reproducible CSV imports.
+- Keeping file paths and project structure reproducible across environments.
+
+### 13.4 What Worked Well
+
+Several project practices worked particularly well:
+
+- Using a structured Work Breakdown Structure helped maintain project scope.
+- Separating data cleaning, analysis, visualization, SQL, and documentation
+  into dedicated files made the project easier to review and reproduce.
+- Independent R and MySQL analysis provided a strong validation mechanism.
+- Final QA identified methodological and documentation issues before the
+  project was released.
+- Keeping advanced topics such as forecasting, RFM analysis, dashboards,
+  and machine learning outside the current scope prevented unnecessary
+  project expansion.
+
+### 13.5 Areas for Improvement
+
+For future portfolio projects:
+
+- Define KPI terminology and analytical rules before beginning analysis.
+- Decide how special transactions and edge cases will be handled earlier.
+- Add validation checks during each analysis phase rather than concentrating
+  most QA near the end.
+- Record actual working time consistently for major work packages.
+- Create reusable QA checks for important metrics and data-quality rules.
+- Review documentation continuously as analytical definitions change.
+
+### 13.6 Lessons for Portfolio Project #2
+
+The main lesson from this project is that analytical correctness depends not
+only on producing results, but also on clearly defining metrics, validating
+assumptions, and checking results through independent methods.
+
+For Portfolio Project #2, the project should begin with:
+
+- clearly defined business and modeling objectives,
+- explicit metric definitions,
+- documented data-quality rules,
+- an early validation plan,
+- consistent time tracking, and
+- scheduled QA checkpoints throughout the project.
+
+These practices should reduce rework and make the next project more
+efficient, reproducible, and easier to explain.
 
 ---
 
