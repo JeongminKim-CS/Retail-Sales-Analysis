@@ -28,9 +28,18 @@ This project addresses five business questions:
 
 ## Dataset
 
+Source:
+[UCI Machine Learning Repository — Online Retail](https://archive.ics.uci.edu/dataset/352/online+retail)  
+
+Citation: Chen, D. (2015). *Online Retail* [Dataset].  
+DOI: [10.24432/C5BW33](https://doi.org/10.24432/C5BW33)
+
+The dataset documentation identifies UnitPrice as being denominated in
+pounds sterling (GBP).
+
 The project uses the `Online Retail.xlsx` transaction dataset.
 
-Each row represents a retail transaction and includes information such as:
+Each row represents a transaction line item and includes information such as:
 
 - Invoice number
 - Product code and description
@@ -205,6 +214,7 @@ results were reproduced consistently across both R and SQL workflows.
 │   └── customer_revenue_top10.png
 ├── 04_report/
 │   ├── analysis_notes.md
+│   ├── final_report.md
 │   └── project_plan.md
 ├── 05_SQL/
 │   ├── 01_database_setup.sql
@@ -239,8 +249,6 @@ interpreting the results:
 - Thirty-three CustomerID values appeared only in cancellation transactions
   and were excluded from the active-customer population used for customer
   concentration analysis.
-- The dataset does not explicitly confirm the transaction currency, so
-  revenue is reported without assigning a currency symbol.
 - The analysis is descriptive and diagnostic and does not establish causal
   relationships.
 
@@ -249,11 +257,18 @@ interpreting the results:
 ### R Analysis
 
 1. Open `01_Retail_Sales_Analysis.Rproj` in RStudio.
-2. Place the raw `Online Retail.xlsx` dataset in:
+
+2. Create the required data directories if they do not already exist:
+
+```bash
+mkdir -p 01_data/01_raw 01_data/02_processed
+```
+
+3. Place the raw `Online Retail.xlsx` dataset in:
 
    `01_data/01_raw/`
 
-3. Run the R scripts in the following order:
+4. Run the R scripts in the following order:
 
    1. `02_R/01_data_cleaning.R`
    2. `02_R/02_monthly_analysis.R`
@@ -261,11 +276,11 @@ interpreting the results:
    4. `02_R/04_product_analysis.R`
    5. `02_R/05_customer_analysis.R`
 
-4. The cleaning script creates the processed dataset:
+5. The cleaning script creates the processed dataset:
 
    `01_data/02_processed/sales_clean.csv`
 
-5. The analysis scripts reproduce the analytical results and save the
+6. The analysis scripts reproduce the analytical results and save the
    final figures in:
 
    `03_figures/`
@@ -276,6 +291,13 @@ Before importing the processed CSV, enable local file loading in MySQL:
 
 ```sql
 SET GLOBAL local_infile = ON;
+```
+
+The MySQL client must also be started with local file loading enabled
+when running the import script:
+
+```bash
+mysql --local-infile=1 -u root -p
 ```
 
 After generating `sales_clean.csv`, run the SQL scripts in the following

@@ -48,6 +48,9 @@ The dataset included invoice numbers, product codes and descriptions,
 quantities, invoice dates, unit prices, customer identifiers, and country
 information.
 
+Revenue values are reported in pounds sterling (GBP), consistent with
+the dataset documentation.
+
 Before analysis, the raw data was audited for missing values, duplicate
 rows, cancellation transactions, negative quantities, and non-positive
 unit prices.
@@ -112,8 +115,8 @@ During the same period:
 - Average Order Value decreased by approximately 5.1%.
 
 This indicates that the increase in net revenue was driven primarily by
-higher transaction volume and broader customer activity rather than by
-customers spending more per order.
+higher order volume and broader customer activity rather than by customers
+spending more per order.
 
 ### 4.2 Revenue Was Highly Concentrated in the United Kingdom
 
@@ -199,9 +202,6 @@ does not represent all transactions in the dataset.
 Third, thirty-three CustomerID values appeared only in cancellation
 transactions and were excluded from the active-customer population used for
 customer revenue concentration analysis.
-
-Fourth, the dataset does not explicitly confirm the transaction currency.
-Revenue is therefore reported without assigning a currency symbol.
 
 Finally, this analysis is descriptive and diagnostic. It identifies patterns
 and relationships in the observed data but does not establish causal

@@ -47,7 +47,7 @@ The primary objectives of this project are to:
 
 4. Calculate key business performance indicators, including:
 
-   - Revenue
+   - Net Revenue
    - Number of Orders
    - Number of Active Customers
    - Average Order Value (AOV)
@@ -496,8 +496,8 @@ Key findings:
   active-customer net revenue.
 
 Major analytical limitations were documented, including partial
-December 2011 data, missing CustomerID values, unconfirmed transaction
-currency, and the descriptive nature of the analysis.
+December 2011 data, missing CustomerID values, and the descriptive
+nature of the analysis.
 
 BQ5 — Final Business Insights is complete.
 
@@ -640,6 +640,7 @@ P7 — Quality Assurance and Project Close
 - P7-05 — Figure Verification
 - P7-06 — Documentation Review
 - P7-07 — Spelling and Formatting Review
+- P7-08 — Finalize GitHub Repository
 
 #### Tasks
 
