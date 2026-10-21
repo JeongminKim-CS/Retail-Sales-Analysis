@@ -102,6 +102,9 @@ net-revenue basis.
 
 Revenue includes valid cancellation transactions as negative revenue.
 
+Revenue values are reported in pounds sterling (GBP), consistent with
+the dataset documentation.
+
 Orders and customers are calculated from non-cancellation sales
 transactions.
 
@@ -310,9 +313,6 @@ interpreting the results.
 - Thirty-three CustomerID values appeared only in cancellation
   transactions and were excluded from the active-customer population
   used for customer revenue concentration analysis.
-
-- Revenue values are reported in pounds sterling (GBP), consistent with
-  the dataset documentation.
 
 - The analysis is descriptive and diagnostic. It identifies patterns and
   relationships in the observed data but does not establish causal
